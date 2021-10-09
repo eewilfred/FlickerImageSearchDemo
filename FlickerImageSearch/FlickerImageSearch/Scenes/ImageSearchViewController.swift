@@ -10,10 +10,14 @@ import UIKit
 class ImageSearchViewController: UIViewController {
 
     override func viewDidLoad() {
+
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        if let request = SearchRequestModel(page: 1, searchText: "cat") {
+            NetworkManager.shared.start(request: request) { (result: Result<SearchResponseModel>) in
+                print(result.result)
+            }
+        }
     }
-
-
 }
 
