@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ImageSearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
