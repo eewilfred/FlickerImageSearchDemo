@@ -21,6 +21,7 @@
 		1D90DFB22711C0960061F507 /* SearchRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D90DFB12711C0960061F507 /* SearchRequestModel.swift */; };
 		1D90DFB42711C0CE0061F507 /* BaseResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D90DFB32711C0CE0061F507 /* BaseResponseModel.swift */; };
 		1D90DFB62711C0DD0061F507 /* BaseRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D90DFB52711C0DD0061F507 /* BaseRequestModel.swift */; };
+		1D90DFB82711F56C0061F507 /* ImageSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D90DFB72711F56C0061F507 /* ImageSearchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		1D90DFB12711C0960061F507 /* SearchRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRequestModel.swift; sourceTree = "<group>"; };
 		1D90DFB32711C0CE0061F507 /* BaseResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponseModel.swift; sourceTree = "<group>"; };
 		1D90DFB52711C0DD0061F507 /* BaseRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequestModel.swift; sourceTree = "<group>"; };
+		1D90DFB72711F56C0061F507 /* ImageSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 				1D90DF7C27119CB20061F507 /* ImageSearchViewController.swift */,
 				1D90DF7E27119CB20061F507 /* Main.storyboard */,
 				1D90DF8327119CB50061F507 /* LaunchScreen.storyboard */,
+				1D90DFB72711F56C0061F507 /* ImageSearchViewModel.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				1D90DFB22711C0960061F507 /* SearchRequestModel.swift in Sources */,
 				1D90DF7B27119CB20061F507 /* SceneDelegate.swift in Sources */,
 				1D90DFB42711C0CE0061F507 /* BaseResponseModel.swift in Sources */,
+				1D90DFB82711F56C0061F507 /* ImageSearchViewModel.swift in Sources */,
 				1D90DFB62711C0DD0061F507 /* BaseRequestModel.swift in Sources */,
 				1D90DFB02711A4D50061F507 /* SearchResponseModel.swift in Sources */,
 			);

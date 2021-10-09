@@ -9,15 +9,18 @@ import UIKit
 
 class ImageSearchViewController: UIViewController {
 
+    let viewModel = ImageSearchViewModel()
+
     override func viewDidLoad() {
 
         super.viewDidLoad()
-
-        if let request = SearchRequestModel(page: 1, searchText: "cat") {
-            NetworkManager.shared.start(request: request) { (result: Result<SearchResponseModel>) in
-                print(result.result)
-            }
-        }
+        viewModel.delegate = self
     }
 }
 
+// MARK: - ImageSearchViewModelDelegate
+
+extension ImageSearchViewController: ImageSearchViewModelDelegate {
+
+    func searchResultUpdated() {}
+}
