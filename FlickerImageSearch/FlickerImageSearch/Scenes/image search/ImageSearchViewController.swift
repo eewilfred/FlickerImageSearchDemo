@@ -27,6 +27,7 @@ class ImageSearchViewController: UIViewController {
         viewModel.delegate = self
         searchBar.delegate = self
         configureCollectionView()
+        configureLayout()
     }
 
     private func configureCollectionView() {
@@ -88,7 +89,7 @@ class ImageSearchViewController: UIViewController {
 extension ImageSearchViewController: ImageSearchViewModelDelegate {
 
     func resetSearchResult() {
-        
+
         guard var snapshot = dataSource?.snapshot() else { return }
         snapshot.deleteItems(presentation.imageCellPresentations)
         presentation.resetPresentation()
@@ -103,6 +104,8 @@ extension ImageSearchViewController: ImageSearchViewModelDelegate {
     }
 }
 
+// MARK: - UISearchBarDelegate
+
 extension ImageSearchViewController: UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -110,5 +113,30 @@ extension ImageSearchViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
         updateActivityIndicator(isHidden: false)
         viewModel.searchImages(for: searchBar.text ?? "")
+    }
+}
+
+// MARK: - Layout
+
+extension ImageSearchViewController {
+
+    private func configureLayout() {
+
+      collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(sectionProvider: { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
+        let size = NSCollectionLayoutSize(
+          widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
+          heightDimension: NSCollectionLayoutDimension.absolute(self.collectionView.frame.width / 2.0)
+        )
+        let itemsPerRow = 2
+        let item = NSCollectionLayoutItem(layoutSize: size)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: size,
+            subitem: item,
+            count: itemsPerRow
+        )
+        let section = NSCollectionLayoutSection(group: group)
+        return section
+      })
     }
 }

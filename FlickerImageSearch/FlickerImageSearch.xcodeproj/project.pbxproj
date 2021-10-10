@@ -199,9 +199,9 @@
 			children = (
 				1D90DFBE2712FF9D0061F507 /* Views */,
 				1D90DF7C27119CB20061F507 /* ImageSearchViewController.swift */,
-				1D90DF7E27119CB20061F507 /* Main.storyboard */,
 				1D90DFB72711F56C0061F507 /* ImageSearchViewModel.swift */,
 				1D90DFBB2712FAC60061F507 /* ImageSearchPresentation.swift */,
+				1D90DF7E27119CB20061F507 /* Main.storyboard */,
 			);
 			path = "image search";
 			sourceTree = "<group>";

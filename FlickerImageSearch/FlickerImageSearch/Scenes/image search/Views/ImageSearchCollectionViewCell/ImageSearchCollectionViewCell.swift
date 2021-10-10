@@ -18,8 +18,9 @@ class ImageSearchCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var imageView: UIImageView!
 
     override func awakeFromNib() {
+
         super.awakeFromNib()
-        // Initialization code
+        layer.cornerRadius = 5.0
     }
 
     private func updateUI() {
