@@ -11,7 +11,8 @@ import Foundation
 
 protocol ImageSearchViewModelDelegate: AnyObject {
 
-    func searchResultUpdated(photosReceived: [Photo]?, shouldReset: Bool)
+    func resetSearchResult()
+    func searchResultUpdated()
 }
 
 // MARK: - ImageSearchViewModelState
@@ -47,7 +48,11 @@ class ImageSearchViewModel {
 
     func searchImages(for text: String) {
 
-        guard !text.isEmpty else { return }
+        guard !text.isEmpty else {
+            state.reset()
+            self.delegate?.resetSearchResult()
+            return
+        }
 
         if text == state.searchText { // fetch next page
             fetchNextpage()
@@ -60,6 +65,7 @@ class ImageSearchViewModel {
 
         state.reset()
         state.searchText = text
+        self.delegate?.resetSearchResult()
         fetchImagesInfo()
     }
 
@@ -84,17 +90,12 @@ class ImageSearchViewModel {
                 self.state.pageNumber = response.result?.photos?.page ?? 0
                 self.state.itemsPerPage = response.result?.photos?.perpage ?? self.state.itemsPerPage
                 self.state.totalPages = response.result?.photos?.total ?? 0
-                var shouldReset = true
                 if self.state.photos == nil {
                     self.state.photos = response.result?.photos?.photo
                 } else {
-                    shouldReset = false
                     self.state.photos?.append(contentsOf: response.result?.photos?.photo ?? [])
                 }
-                self.delegate?.searchResultUpdated(
-                    photosReceived: response.result?.photos?.photo,
-                    shouldReset: shouldReset
-                )
+                self.delegate?.searchResultUpdated()
             }
         }
     }

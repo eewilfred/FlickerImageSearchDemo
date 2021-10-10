@@ -16,19 +16,19 @@ struct ImageSearchPresentation {
 
     var imageCellPresentations: [ImageSearchCellPresentation] = []
 
-    mutating func update(photos: [Photo]?, shouldReset: Bool) {
+    mutating func update(state: ImageSearchViewModelState) {
 
-        let cellPresentations: [ImageSearchCellPresentation] = photos?.compactMap({ photo in
+        let cellPresentations: [ImageSearchCellPresentation] = state.photos?.compactMap({ photo in
             if let url = photo.urlString {
                 return ImageSearchCellPresentation(imageURLString: url)
             }
             return nil
         }) ?? []
+        imageCellPresentations.append(contentsOf: cellPresentations)
+    }
 
-        if shouldReset {
-            imageCellPresentations = cellPresentations
-        } else {
-            imageCellPresentations.append(contentsOf: cellPresentations)
-        }
+    mutating func resetPresentation() {
+
+        imageCellPresentations = []
     }
 }

@@ -12,7 +12,9 @@ class ImageSearchViewController: UIViewController {
     let viewModel = ImageSearchViewModel()
     var presentation = ImageSearchPresentation()
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
 
     typealias DataSource = UICollectionViewDiffableDataSource<ImageSearchPresentation.Sections, ImageSearchCellPresentation>
     typealias Snapshot = NSDiffableDataSourceSnapshot<ImageSearchPresentation.Sections, ImageSearchCellPresentation>
@@ -23,6 +25,7 @@ class ImageSearchViewController: UIViewController {
 
         super.viewDidLoad()
         viewModel.delegate = self
+        searchBar.delegate = self
         configureCollectionView()
     }
 
@@ -43,8 +46,20 @@ class ImageSearchViewController: UIViewController {
     private func updateUI() {
 
         guard var snapshot = dataSource?.snapshot() else { return }
+        if !Thread.isMainThread {
+            DispatchQueue.main.async {
+                self.updateUI()
+            }
+            return
+        }
         snapshot.appendItems(presentation.imageCellPresentations, toSection: .main)
         dataSource?.apply(snapshot, animatingDifferences: true)
+        updateActivityIndicator(isHidden: true)
+    }
+
+    private func updateActivityIndicator(isHidden: Bool) {
+
+        activityIndicator.isHidden = isHidden
     }
 
     // MARK: - support
@@ -72,9 +87,28 @@ class ImageSearchViewController: UIViewController {
 
 extension ImageSearchViewController: ImageSearchViewModelDelegate {
 
-    func searchResultUpdated(photosReceived: [Photo]?, shouldReset: Bool) {
+    func resetSearchResult() {
+        
+        guard var snapshot = dataSource?.snapshot() else { return }
+        snapshot.deleteItems(presentation.imageCellPresentations)
+        presentation.resetPresentation()
+        dataSource?.apply(snapshot, animatingDifferences: true)
+    }
 
-        presentation.update(photos: photosReceived, shouldReset: shouldReset)
+
+    func searchResultUpdated() {
+
+        presentation.update(state: viewModel.state)
         updateUI()
+    }
+}
+
+extension ImageSearchViewController: UISearchBarDelegate {
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+
+        searchBar.resignFirstResponder()
+        updateActivityIndicator(isHidden: false)
+        viewModel.searchImages(for: searchBar.text ?? "")
     }
 }

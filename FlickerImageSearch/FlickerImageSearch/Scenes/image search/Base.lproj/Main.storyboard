@@ -24,10 +24,13 @@
                                     <navigationItem title="Image Search" id="zMM-D6-jvo"/>
                                 </items>
                             </navigationBar>
-                            <searchBar contentMode="redraw" searchBarStyle="prominent" placeholder="image you want to search" translatesAutoresizingMaskIntoConstraints="NO" id="DvI-mm-CLY">
+                            <searchBar contentMode="redraw" placeholder="image you want to search" translatesAutoresizingMaskIntoConstraints="NO" id="DvI-mm-CLY">
                                 <rect key="frame" x="0.0" y="88" width="414" height="51"/>
                                 <color key="barTintColor" systemColor="systemGray6Color"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="search"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="dL8-Pf-LJI"/>
+                                </connections>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ugK-mt-3bg">
                                 <rect key="frame" x="0.0" y="139" width="414" height="723"/>
@@ -38,6 +41,11 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
+                                <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" id="HDt-Ib-V6j">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="723"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </activityIndicatorView>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="ImageSearchCollectionViewCell" id="a5h-fD-Sr4" customClass="ImageSearchCollectionViewCell" customModule="FlickerImageSearch" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
@@ -80,7 +88,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="HDt-Ib-V6j" id="3l1-M6-sc6"/>
                         <outlet property="collectionView" destination="ugK-mt-3bg" id="mKK-VI-kaF"/>
+                        <outlet property="searchBar" destination="DvI-mm-CLY" id="70q-Fm-s41"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
