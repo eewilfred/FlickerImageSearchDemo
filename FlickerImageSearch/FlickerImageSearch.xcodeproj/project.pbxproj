@@ -28,6 +28,7 @@
 		1D90DFC42712FFF10061F507 /* ImageSearchCellPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D90DFC32712FFF10061F507 /* ImageSearchCellPresentation.swift */; };
 		1D90DFC62713006C0061F507 /* UICollectionView+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D90DFC52713006C0061F507 /* UICollectionView+Extenstion.swift */; };
 		1D90DFC82713225F0061F507 /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D90DFC72713225F0061F507 /* ImageDownloadManager.swift */; };
+		1D90DFCA27146AF30061F507 /* ImageDownloadManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D90DFC927146AF20061F507 /* ImageDownloadManagerTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		1D90DFC32712FFF10061F507 /* ImageSearchCellPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageSearchCellPresentation.swift; path = ImageSearchCollectionViewCell/ImageSearchCellPresentation.swift; sourceTree = "<group>"; };
 		1D90DFC52713006C0061F507 /* UICollectionView+Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extenstion.swift"; sourceTree = "<group>"; };
 		1D90DFC72713225F0061F507 /* ImageDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
+		1D90DFC927146AF20061F507 /* ImageDownloadManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManagerTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				1D90DF8F27119CB60061F507 /* FlickerImageSearchViewModelTest.swift */,
+				1D90DFC927146AF20061F507 /* ImageDownloadManagerTest.swift */,
 			);
 			path = FlickerImageSearchTests;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D90DF9027119CB60061F507 /* FlickerImageSearchViewModelTest.swift in Sources */,
+				1D90DFCA27146AF30061F507 /* ImageDownloadManagerTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
