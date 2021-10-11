@@ -87,6 +87,12 @@ class ImageSearchViewModel {
                     return
                 }
 
+                // pre download images
+                if let photos = response.result?.photos?.photo {
+                    ImageDownloadManager.shared.getImages(photos: photos)
+                }
+
+                // Update state
                 self.state.pageNumber = response.result?.photos?.page ?? 0
                 self.state.itemsPerPage = response.result?.photos?.perpage ?? self.state.itemsPerPage
                 self.state.totalPages = response.result?.photos?.total ?? 0
@@ -95,6 +101,8 @@ class ImageSearchViewModel {
                 } else {
                     self.state.photos?.append(contentsOf: response.result?.photos?.photo ?? [])
                 }
+
+                // Inform UI
                 self.delegate?.searchResultUpdated()
             }
         }
