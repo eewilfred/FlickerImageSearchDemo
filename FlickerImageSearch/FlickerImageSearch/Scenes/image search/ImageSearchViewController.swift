@@ -16,6 +16,8 @@ class ImageSearchViewController: UIViewController {
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
 
+    private var failedAlert: UIAlertController?
+
     typealias DataSource = UICollectionViewDiffableDataSource<ImageSearchPresentation.Sections, ImageSearchCellPresentation>
     typealias Snapshot = NSDiffableDataSourceSnapshot<ImageSearchPresentation.Sections, ImageSearchCellPresentation>
 
@@ -83,11 +85,36 @@ class ImageSearchViewController: UIViewController {
             }
         })
     }
+
+    private func triggerSearch() {
+
+        updateActivityIndicator(isHidden: false)
+        viewModel.searchImages(for: searchBar.text ?? "")
+    }
 }
 
 // MARK: - ImageSearchViewModelDelegate
 
 extension ImageSearchViewController: ImageSearchViewModelDelegate {
+
+    func searchFailed() {
+
+        let alert = UIAlertController(
+            title: "Search Failed",
+            message: "Please Try again",
+            preferredStyle: .alert
+        )
+        let retry = UIAlertAction(title: "retry", style: .default) { _ in
+            self.triggerSearch()
+        }
+        alert.addAction(retry)
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in }
+        alert.addAction(okAction)
+
+        self.present(alert, animated: true, completion: nil)
+        failedAlert = alert
+    }
+
 
     func resetSearchResult() {
 
@@ -112,8 +139,7 @@ extension ImageSearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 
         searchBar.resignFirstResponder()
-        updateActivityIndicator(isHidden: false)
-        viewModel.searchImages(for: searchBar.text ?? "")
+        triggerSearch()
     }
 }
 
@@ -151,7 +177,7 @@ extension ImageSearchViewController {
     }
 }
 
-// MARK: -
+// MARK: - UICollectionViewDelegate
 
 extension ImageSearchViewController: UICollectionViewDelegate {
 

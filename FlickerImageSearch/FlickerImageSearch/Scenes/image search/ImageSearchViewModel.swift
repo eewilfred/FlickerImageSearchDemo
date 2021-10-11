@@ -13,6 +13,7 @@ protocol ImageSearchViewModelDelegate: AnyObject {
 
     func resetSearchResult()
     func searchResultUpdated()
+    func searchFailed()
 }
 
 // MARK: - ImageSearchViewModelState
@@ -98,8 +99,8 @@ class ImageSearchViewModel {
 
             NetworkManager.shared.start(request: request) { (response: Result<SearchResponseModel>) in
 
-                if let error = response.error {
-                    // TODO: HANLDE error
+                if response.error != nil {
+                    self.delegate?.searchFailed()
                     return
                 }
 
