@@ -27,6 +27,7 @@
 		1D90DFC22712FFBE0061F507 /* ImageSearchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D90DFC02712FFBE0061F507 /* ImageSearchCollectionViewCell.xib */; };
 		1D90DFC42712FFF10061F507 /* ImageSearchCellPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D90DFC32712FFF10061F507 /* ImageSearchCellPresentation.swift */; };
 		1D90DFC62713006C0061F507 /* UICollectionView+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D90DFC52713006C0061F507 /* UICollectionView+Extenstion.swift */; };
+		1D90DFC82713225F0061F507 /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D90DFC72713225F0061F507 /* ImageDownloadManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		1D90DFC02712FFBE0061F507 /* ImageSearchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ImageSearchCollectionViewCell.xib; path = ImageSearchCollectionViewCell/ImageSearchCollectionViewCell.xib; sourceTree = "<group>"; };
 		1D90DFC32712FFF10061F507 /* ImageSearchCellPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageSearchCellPresentation.swift; path = ImageSearchCollectionViewCell/ImageSearchCellPresentation.swift; sourceTree = "<group>"; };
 		1D90DFC52713006C0061F507 /* UICollectionView+Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extenstion.swift"; sourceTree = "<group>"; };
+		1D90DFC72713225F0061F507 /* ImageDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				1D90DFAC27119F630061F507 /* NetworkManager.swift */,
+				1D90DFC72713225F0061F507 /* ImageDownloadManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				1D90DFC42712FFF10061F507 /* ImageSearchCellPresentation.swift in Sources */,
 				1D90DF7927119CB20061F507 /* AppDelegate.swift in Sources */,
 				1D90DFB22711C0960061F507 /* SearchRequestModel.swift in Sources */,
+				1D90DFC82713225F0061F507 /* ImageDownloadManager.swift in Sources */,
 				1D90DF7B27119CB20061F507 /* SceneDelegate.swift in Sources */,
 				1D90DFB42711C0CE0061F507 /* BaseResponseModel.swift in Sources */,
 				1D90DFB82711F56C0061F507 /* ImageSearchViewModel.swift in Sources */,
