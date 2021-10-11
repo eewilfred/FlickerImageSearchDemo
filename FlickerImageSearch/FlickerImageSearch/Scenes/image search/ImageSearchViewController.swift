@@ -47,17 +47,17 @@ class ImageSearchViewController: UIViewController {
         data.apply(snapshot, animatingDifferences: false)
     }
 
-    private func updateUI() {
+    private func updateUI(_ imageCellPresentations: [ImageSearchCellPresentation]) {
 
         guard var snapshot = dataSource?.snapshot() else { return }
         if !Thread.isMainThread {
             DispatchQueue.main.async {
-                self.updateUI()
+                self.updateUI(imageCellPresentations)
             }
             return
         }
-        snapshot.appendItems(presentation.imageCellPresentations, toSection: .main)
-        dataSource?.apply(snapshot, animatingDifferences: true)
+        snapshot.appendItems(imageCellPresentations, toSection: .main)
+        dataSource?.apply(snapshot, animatingDifferences: false)
         updateActivityIndicator(isHidden: true)
     }
 
@@ -119,16 +119,16 @@ extension ImageSearchViewController: ImageSearchViewModelDelegate {
     func resetSearchResult() {
 
         guard var snapshot = dataSource?.snapshot() else { return }
-        snapshot.deleteItems(presentation.imageCellPresentations)
+        snapshot.deleteAllItems()
+        snapshot.appendSections([.main])
         presentation.resetPresentation()
         dataSource?.apply(snapshot, animatingDifferences: true)
     }
 
 
-    func searchResultUpdated() {
+    func searchResultUpdated(photos: [Photo]?) {
 
-        presentation.update(state: viewModel.state)
-        updateUI()
+        updateUI(presentation.update(state: viewModel.state))
     }
 }
 

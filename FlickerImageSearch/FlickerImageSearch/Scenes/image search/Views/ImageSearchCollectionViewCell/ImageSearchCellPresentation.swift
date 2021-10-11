@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct ImageSearchCellPresentation: Hashable, Identifiable {
+struct ImageSearchCellPresentation: Hashable {
 
-    let id = UUID()
     var imageURLString: String
 }

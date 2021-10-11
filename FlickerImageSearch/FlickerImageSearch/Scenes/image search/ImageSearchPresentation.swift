@@ -16,7 +16,7 @@ struct ImageSearchPresentation {
 
     var imageCellPresentations: [ImageSearchCellPresentation] = []
 
-    mutating func update(state: ImageSearchViewModelState) {
+    mutating func update(state: ImageSearchViewModelState) -> [ImageSearchCellPresentation] {
 
         let cellPresentations: [ImageSearchCellPresentation] = state.photos?.compactMap({ photo in
             if let url = photo.urlString {
@@ -25,6 +25,7 @@ struct ImageSearchPresentation {
             return nil
         }) ?? []
         imageCellPresentations.append(contentsOf: cellPresentations)
+        return cellPresentations
     }
 
     mutating func resetPresentation() {

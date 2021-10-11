@@ -12,7 +12,7 @@ import Foundation
 protocol ImageSearchViewModelDelegate: AnyObject {
 
     func resetSearchResult()
-    func searchResultUpdated()
+    func searchResultUpdated(photos: [Photo]?)
     func searchFailed()
 }
 
@@ -120,7 +120,7 @@ class ImageSearchViewModel {
                 }
 
                 // Inform UI
-                self.delegate?.searchResultUpdated()
+                self.delegate?.searchResultUpdated(photos: response.result?.photos?.photo ?? [])
             }
         }
     }
