@@ -122,21 +122,30 @@ extension ImageSearchViewController {
 
     private func configureLayout() {
 
-      collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(sectionProvider: { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-        let size = NSCollectionLayoutSize(
-          widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
-          heightDimension: NSCollectionLayoutDimension.absolute(self.collectionView.frame.width / 2.0)
+        collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(
+            sectionProvider: { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
+                let size = NSCollectionLayoutSize(
+                    widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
+                    heightDimension: NSCollectionLayoutDimension.absolute(
+                        self.collectionView.frame.width / 2.0
+                    )
+                )
+                let itemsPerRow = 2
+                let item = NSCollectionLayoutItem(layoutSize: size)
+                item.contentInsets = NSDirectionalEdgeInsets(
+                    top: 5,
+                    leading: 5,
+                    bottom: 5,
+                    trailing: 5
+                )
+                let group = NSCollectionLayoutGroup.horizontal(
+                    layoutSize: size,
+                    subitem: item,
+                    count: itemsPerRow
+                )
+                let section = NSCollectionLayoutSection(group: group)
+                return section
+            }
         )
-        let itemsPerRow = 2
-        let item = NSCollectionLayoutItem(layoutSize: size)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
-        let group = NSCollectionLayoutGroup.horizontal(
-            layoutSize: size,
-            subitem: item,
-            count: itemsPerRow
-        )
-        let section = NSCollectionLayoutSection(group: group)
-        return section
-      })
     }
 }
