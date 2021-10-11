@@ -19,6 +19,7 @@ class ImageSearchCollectionViewCell: UICollectionViewCell {
 
     private var imageDownLoadTask: URLSessionDataTask?
 
+    // MARK: Life cycle
     override func awakeFromNib() {
 
         super.awakeFromNib()
@@ -40,6 +41,8 @@ class ImageSearchCollectionViewCell: UICollectionViewCell {
             ImageDownloadManager.shared.stopImageDownloadTask(url: url)
         }
     }
+
+    // MARK: UI updates
 
     private func addObserver() {
 
