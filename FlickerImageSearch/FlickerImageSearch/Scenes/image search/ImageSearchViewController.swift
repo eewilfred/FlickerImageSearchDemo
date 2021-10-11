@@ -36,6 +36,7 @@ class ImageSearchViewController: UIViewController {
             ImageSearchCollectionViewCell.nib,
             forCellWithReuseIdentifier: ImageSearchCollectionViewCell.identifier
         )
+        collectionView.delegate = self
         dataSource = makeDataSource()
 
         guard let data = dataSource else { return }
@@ -147,5 +148,19 @@ extension ImageSearchViewController {
                 return section
             }
         )
+    }
+}
+
+// MARK: -
+
+extension ImageSearchViewController: UICollectionViewDelegate {
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        willDisplay cell: UICollectionViewCell,
+        forItemAt indexPath: IndexPath
+    ) {
+
+        viewModel.updateLastViewedIndex(index: indexPath.row)
     }
 }

@@ -22,12 +22,14 @@ struct ImageSearchViewModelState {
     private enum Constants {
 
         static let itemsPerPage = 20
+        static let remainingItemIndexForNextpagefetch = 5
     }
     var searchText: String?
     var pageNumber = 1
     var totalPages = 0
     var itemsPerPage = Constants.itemsPerPage
     var photos: [Photo]?
+    var lastViewedItemIndex = 0
 
     mutating func reset() {
 
@@ -35,6 +37,7 @@ struct ImageSearchViewModelState {
         pageNumber = 1
         totalPages = 0
         itemsPerPage = Constants.itemsPerPage
+        lastViewedItemIndex = 0
         photos = nil
     }
 }
@@ -46,6 +49,11 @@ class ImageSearchViewModel {
     var state = ImageSearchViewModelState()
     weak var delegate: ImageSearchViewModelDelegate?
 
+    private enum Constants {
+
+        static let remainingItemIndexForNextpagefetch = 5
+    }
+
     func searchImages(for text: String) {
 
         guard !text.isEmpty else {
@@ -54,10 +62,14 @@ class ImageSearchViewModel {
             return
         }
 
-        if text == state.searchText { // fetch next page
+        fetchImagesInfo(for: text)
+    }
+
+    func updateLastViewedIndex(index: Int) {
+
+        state.lastViewedItemIndex = max(index, state.lastViewedItemIndex)
+        if state.lastViewedItemIndex == (state.itemsPerPage * state.pageNumber) - Constants.remainingItemIndexForNextpagefetch {
             fetchNextpage()
-        } else { // new search
-            fetchImagesInfo(for: text)
         }
     }
 
@@ -70,6 +82,10 @@ class ImageSearchViewModel {
     }
 
     private func fetchNextpage() {
+
+        guard state.pageNumber < state.totalPages else {
+            return
+        }
 
         state.pageNumber += 1
         fetchImagesInfo()
